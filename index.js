@@ -5,7 +5,8 @@ if (typeof module !== 'undefined') module.exports = simpleheat;
 function simpleheat(canvas) {
     if (!(this instanceof simpleheat)) return new simpleheat(canvas);
 
-    this._canvas = canvas = typeof canvas === 'string' ? document.getElementById(canvas) : canvas;
+    this._canvas = canvas =
+    typeof canvas === 'string' ? document.getElementById(canvas) : canvas;
 
     this._ctx = canvas.getContext('2d');
     this._width = canvas.width;
@@ -16,7 +17,6 @@ function simpleheat(canvas) {
 }
 
 simpleheat.prototype = {
-
     defaultRadius: 25,
 
     defaultGradient: {
@@ -24,7 +24,7 @@ simpleheat.prototype = {
         0.6: 'cyan',
         0.7: 'lime',
         0.8: 'yellow',
-        1.0: 'red'
+        1.0: 'red',
     },
 
     data: function (data) {
@@ -51,9 +51,9 @@ simpleheat.prototype = {
         blur = blur === undefined ? 15 : blur;
 
         // create a grayscale blurred circle image that we'll use for drawing points
-        var circle = this._circle = this._createCanvas(),
+        var circle = (this._circle = this._createCanvas()),
             ctx = circle.getContext('2d'),
-            r2 = this._r = r + blur;
+            r2 = (this._r = r + blur);
 
         circle.width = circle.height = r2 * 2;
 
@@ -75,7 +75,7 @@ simpleheat.prototype = {
     },
 
     gradient: function (grad) {
-        // create a 256x1 gradient that we'll use to turn a grayscale heatmap into a colored one
+    // create a 256x1 gradient that we'll use to turn a grayscale heatmap into a colored one
         var canvas = this._createCanvas(),
             ctx = canvas.getContext('2d'),
             gradient = ctx.createLinearGradient(0, 0, 0, 256);
@@ -106,7 +106,13 @@ simpleheat.prototype = {
         // draw a grayscale heatmap by putting a blurred circle at each data point
         for (var i = 0, len = this._data.length, p; i < len; i++) {
             p = this._data[i];
-            ctx.globalAlpha = Math.min(Math.max(p[2] / this._max, minOpacity === undefined ? 0.05 : minOpacity), 1);
+            ctx.globalAlpha = Math.min(
+                Math.max(
+                    p[2] / this._max,
+                    minOpacity === undefined ? 0.05 : minOpacity
+                ),
+                1
+            );
             ctx.drawImage(this._circle, p[0] - this._r, p[1] - this._r);
         }
 
@@ -139,5 +145,5 @@ simpleheat.prototype = {
             // the canvas class needs to have a default constructor without any parameter
             return new this._canvas.constructor();
         }
-    }
+    },
 };

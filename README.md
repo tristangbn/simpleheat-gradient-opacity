@@ -1,6 +1,8 @@
-simpleheat
-==========
+# simpleheat-transparent-gradient
 
+This package is based on mourner's [simpleheat](https://github.com/mourner/simpleheat) but provides ability to set gradients with transparent values, fixing issue: [minOpacity is actually minValue](https://github.com/mourner/simpleheat/issues/31).
+
+### From mourner's simpleheat:  
 A super-tiny JavaScript library for drawing heatmaps with Canvas.
 Inspired by [heatmap.js](https://github.com/pa7/heatmap.js), but with focus on simplicity and performance.
 
@@ -9,12 +11,12 @@ Powers [Leaflet.heat](https://github.com/Leaflet/Leaflet.heat), a heatmap plugin
 Demo: http://mourner.github.io/simpleheat/demo
 
 ```js
-simpleheat('canvas').data(data).draw();
+simpleheat("canvas").data(data).draw();
 ```
 
 ## Reference
 
-#### Constructor
+### Constructor
 
 ```js
 // create a simpleheat object given an id or canvas reference
@@ -37,7 +39,7 @@ heat.add(point);
 heat.clear();
 ```
 
-#### Appearance
+### Appearance
 
 ```js
 // set point radius and blur radius (25 and 15 by default)
@@ -50,7 +52,7 @@ heat.gradient(grad);
 heat.resize();
 ```
 
-#### Rendering
+### Rendering
 
 ```js
 // draw the heatmap with optional minimum point opacity (0.05 by default)
